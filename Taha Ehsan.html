@@ -1,0 +1,571 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Taha Ehsan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;900&family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a full-bleed "microscope slide" hero (always dark, live cell canvas), a stat strip, then alternating bands: about, a vertical timeline, education, and a tile wall of activities. */
+:root {
+  /* Palette taken from an H&E-stained tissue slide: hematoxylin violet + eosin pink. */
+  --bg: #faf6f8;
+  --surface: #ffffff;
+  --fg: #1f1530;
+  --muted: #6b5f78;
+  --line: #e6dbe3;
+  --accent: #6a3fb5;
+  --gold: #d23f73;
+  --maroon: #7a003c;
+  --slide: #1a1033;
+  --slide-fg: #f6eefa;
+  --slide-muted: #b5a3cc;
+  --mint: #ff8fbf;
+  --display: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+  --body: "Figtree", "Segoe UI", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #120c1c; --surface: #1b1428; --fg: #eee6f4; --muted: #a898b8; --line: #2e2440;
+    --accent: #b598ff; --gold: #ff6f9f; --maroon: #f28bb6; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #120c1c; --surface: #1b1428; --fg: #eee6f4; --muted: #a898b8; --line: #2e2440;
+  --accent: #b598ff; --gold: #ff6f9f; --maroon: #f28bb6; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body { background: var(--bg); color: var(--fg); font: 400 1.0625rem/1.65 var(--body); }
+.wrap {
+  max-width: 70rem; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--mint); outline-offset: 3px; border-radius: 4px; }
+h1, h2, h3, h4 { margin: 0; text-wrap: balance; }
+.label { font: 500 0.72rem/1.3 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* ---------- Nav ---------- */
+.nav {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--slide) 82%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(181, 163, 204, 0.18);
+}
+.nav .wrap { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-block: 0.8rem; }
+.nav .mark { font: 900 1.4rem/1 var(--display); letter-spacing: 0.02em; color: var(--slide-fg); text-decoration: none; }
+.nav .mark span { color: var(--mint); }
+.nav ul { display: flex; gap: 1.1rem; list-style: none; margin: 0; padding: 0; flex-wrap: wrap; }
+.nav ul a { font: 500 0.78rem/1 var(--mono); color: var(--slide-muted); text-decoration: none; }
+.nav ul a:hover { color: var(--mint); }
+.nav ul a.nav-li { display: inline-flex; align-items: center; gap: 0.4rem; color: var(--slide); background: var(--mint); padding: 0.45rem 0.7rem; border-radius: 99px; }
+.nav ul a.nav-li:hover { color: var(--slide); background: var(--slide-fg); }
+.nav-li svg, .li-card svg { width: 0.95rem; height: 0.95rem; fill: currentColor; }
+.li-card {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 1rem; align-items: center; text-decoration: none;
+  padding: 1.1rem 1.25rem; border-radius: 18px; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(181, 163, 204, 0.35);
+  color: var(--slide-fg); transition: border-color .2s ease, transform .2s ease;
+}
+.li-card:hover { border-color: var(--mint); transform: translateY(-2px); }
+.li-card .li-logo { width: 3rem; height: 3rem; border-radius: 12px; display: grid; place-items: center; background: var(--mint); color: var(--slide); }
+.li-card .li-logo svg { width: 1.5rem; height: 1.5rem; }
+.li-card b { display: block; font: 700 1.05rem/1.3 var(--body); }
+.li-card span { font: 400 0.78rem/1.4 var(--mono); color: var(--slide-muted); overflow-wrap: anywhere; }
+.li-card em { font-style: normal; color: var(--mint); font-weight: 600; font-family: var(--body); font-size: 0.9rem; }
+
+/* ---------- Hero (slide) ---------- */
+.hero { position: relative; overflow: hidden; background: var(--slide); color: var(--slide-fg); isolation: isolate; }
+.hero canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+.hero::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse at 25% 55%, transparent 0 35%, rgba(26, 16, 51, 0.78) 80%);
+}
+.hero .wrap { padding-block: 5rem 4rem; display: grid; gap: 1.5rem; }
+.specimen {
+  display: inline-flex; flex-wrap: wrap; gap: 0.35rem 1rem; align-items: center;
+  font: 500 0.75rem/1.3 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; color: var(--slide-muted);
+}
+.specimen b { color: var(--mint); font-weight: 500; }
+.hero h1 {
+  font: 900 clamp(4.5rem, 17vw, 12rem)/0.82 var(--display);
+  letter-spacing: -0.01em; text-transform: uppercase;
+}
+.hero h1 .last { display: block; color: transparent; -webkit-text-stroke: 2px var(--mint); }
+.roles-line { font: 600 clamp(1.2rem, 3vw, 1.75rem)/1.3 var(--body); margin: 0; min-height: 1.3em; }
+.roles-line .rot { color: var(--mint); border-bottom: 3px solid var(--gold); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 0.5rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem; text-decoration: none;
+  font: 700 0.95rem/1 var(--body); padding: 0.95rem 1.3rem; border-radius: 99px;
+  transition: transform .15s ease, background-color .15s ease;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn-primary { background: var(--mint); color: var(--slide); }
+.btn-ghost { color: var(--slide-fg); border: 1px solid rgba(181, 163, 204, 0.45); }
+.btn-ghost:hover { border-color: var(--mint); }
+.scale {
+  position: absolute; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 1.25rem;
+  display: grid; justify-items: end; gap: 0.3rem; font: 400 0.68rem/1 var(--mono); color: var(--slide-muted);
+}
+.scale i { display: block; width: 5rem; height: 3px; background: var(--slide-fg); }
+
+/* ---------- Stat strip ---------- */
+.strip { background: #b8295e; color: #fff6fa; }
+.strip .wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; padding-block: 1.5rem; }
+.strip div { display: grid; gap: 0.15rem; }
+.strip b { font: 900 clamp(2.2rem, 5vw, 3.2rem)/0.9 var(--display); font-variant-numeric: tabular-nums; }
+.strip span { font: 600 0.85rem/1.3 var(--body); }
+
+/* ---------- Sections ---------- */
+section.band { scroll-margin-top: 4rem; }
+section.band > .wrap { padding-block: 5rem; }
+.sec-head { display: grid; gap: 0.5rem; margin-bottom: 2.25rem; }
+.sec-head h2 { font: 900 clamp(2.6rem, 7vw, 4.5rem)/0.9 var(--display); text-transform: uppercase; letter-spacing: 0.005em; }
+.sec-head h2 em { font-style: normal; color: var(--accent); }
+
+/* About */
+.about-grid { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 3rem; align-items: start; }
+.about-grid p { margin: 0 0 1.1rem; max-width: 38rem; }
+.about-grid p.big { font-size: clamp(1.3rem, 2.6vw, 1.7rem); line-height: 1.4; font-weight: 500; }
+.about-grid p.why { padding: 1rem 1.2rem; border-left: 4px solid var(--gold); background: color-mix(in srgb, var(--gold) 8%, var(--surface)); border-radius: 0 12px 12px 0; font-size: 1.05rem; }
+.about-grid p.big mark { background: linear-gradient(transparent 60%, color-mix(in srgb, var(--gold) 45%, transparent) 60%); color: inherit; }
+.skills-card { background: var(--surface); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; display: grid; gap: 1rem; }
+.skills-card h3 { font: 700 1.5rem/1 var(--display); text-transform: uppercase; letter-spacing: 0.02em; }
+.chips { display: flex; flex-wrap: wrap; gap: 0.45rem; list-style: none; margin: 0; padding: 0; }
+.chips li {
+  font: 500 0.82rem/1 var(--body); padding: 0.55rem 0.8rem; border-radius: 99px;
+  border: 1px solid var(--line); background: var(--bg); transition: background-color .15s, color .15s, border-color .15s;
+}
+.chips li:hover { background: var(--accent); color: var(--surface); border-color: var(--accent); }
+
+/* Research interests */
+.research { background: var(--slide); color: var(--slide-fg); }
+.research .sec-head .label { color: var(--slide-muted); }
+.research .sec-head h2 em { color: var(--mint); }
+.research-intro { max-width: 44rem; font-size: clamp(1.1rem, 2.2vw, 1.35rem); line-height: 1.5; margin: -0.75rem 0 2.25rem; color: var(--slide-fg); }
+.r-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1rem; list-style: none; margin: 0; padding: 0; }
+.r-card {
+  border: 1px solid rgba(181, 163, 204, 0.28); border-radius: 18px; padding: 1.35rem;
+  background: rgba(255, 255, 255, 0.03); display: grid; gap: 0.6rem; align-content: start;
+  transition: border-color .2s ease, transform .2s ease;
+}
+.r-card:hover { border-color: var(--mint); transform: translateY(-3px); }
+.r-card .stain { font: 500 0.68rem/1 var(--mono); letter-spacing: 0.1em; text-transform: uppercase; color: var(--mint); }
+.r-card h3 { font: 700 1.15rem/1.25 var(--body); }
+.r-card p { margin: 0; font-size: 0.93rem; color: var(--slide-muted); line-height: 1.55; }
+.seeking {
+  margin-top: 1.5rem; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 1.5rem;
+  border-radius: 20px; padding: 1.75rem; background: linear-gradient(120deg, rgba(255, 143, 191, 0.16), rgba(150, 105, 245, 0.16));
+  border: 1px solid rgba(255, 143, 191, 0.35);
+}
+.seeking h3 { font: 900 clamp(1.8rem, 4vw, 2.4rem)/0.95 var(--display); text-transform: uppercase; }
+.seeking ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 0.4rem; }
+.seeking li::marker { color: var(--mint); }
+.seeking p { margin: 0.75rem 0 0; color: var(--slide-muted); }
+
+/* Timeline */
+.exp { background: var(--surface); border-block: 1px solid var(--line); }
+.timeline { list-style: none; margin: 0; padding: 0; position: relative; display: grid; gap: 1.25rem; }
+.timeline::before { content: ""; position: absolute; left: 9.5rem; top: 0.5rem; bottom: 0.5rem; width: 2px; background: var(--line); }
+.t-item { display: grid; grid-template-columns: 8.25rem 2.5rem minmax(0, 1fr); align-items: start; }
+.t-when { font: 500 0.8rem/1.5 var(--mono); color: var(--muted); text-align: right; padding-top: 1.35rem; font-variant-numeric: tabular-nums; }
+.t-dot { justify-self: center; margin-top: 1.5rem; width: 1rem; height: 1rem; border-radius: 50%; background: var(--surface); border: 3px solid var(--accent); position: relative; z-index: 1; }
+.t-item.live .t-dot { background: var(--accent); box-shadow: 0 0 0 6px color-mix(in srgb, var(--accent) 22%, transparent); }
+.t-card {
+  border: 1px solid var(--line); border-radius: 16px; padding: 1.25rem 1.4rem; background: var(--bg);
+  transition: transform .2s ease, border-color .2s ease;
+}
+.t-card:hover { transform: translateX(4px); border-color: var(--accent); }
+.t-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 0.25rem 1rem; }
+.t-card h3 { font: 700 1.25rem/1.25 var(--body); }
+.badge { font: 500 0.68rem/1 var(--mono); letter-spacing: 0.08em; text-transform: uppercase; padding: 0.35rem 0.55rem; border-radius: 99px; background: color-mix(in srgb, var(--accent) 16%, transparent); color: var(--accent); }
+.org { margin: 0.2rem 0 0; font: 500 0.92rem/1.45 var(--body); color: var(--muted); }
+.t-card p.desc { margin: 0.7rem 0 0; max-width: 42rem; }
+.t-card .chips { margin-top: 0.9rem; }
+.sub { list-style: none; margin: 0.9rem 0 0; padding: 0; display: grid; gap: 0.8rem; }
+.sub li { padding-left: 1rem; border-left: 3px solid var(--gold); }
+.sub h4 { font: 700 1.02rem/1.3 var(--body); }
+.sub p { margin: 0.25rem 0 0; }
+.sub .org { font-size: 0.85rem; margin-top: 0.1rem; }
+.highlight { font-weight: 700; color: var(--accent); }
+
+/* Education */
+.edu-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; }
+.edu {
+  border-radius: 20px; padding: 1.75rem; display: grid; gap: 0.5rem; align-content: start;
+  background: var(--surface); border: 1px solid var(--line); position: relative; overflow: hidden;
+}
+.edu.mac { background: var(--maroon); color: #fff6f9; border-color: var(--maroon); }
+.edu.mac .label, .edu.mac .org { color: rgba(255, 246, 249, 0.8); }
+.edu h3 { font: 900 clamp(1.9rem, 4vw, 2.6rem)/0.95 var(--display); text-transform: uppercase; }
+.edu .big-year { position: absolute; right: -0.5rem; bottom: -1.5rem; font: 900 7rem/1 var(--display); opacity: 0.12; pointer-events: none; }
+
+.award {
+  position: relative; z-index: 1; margin-top: 0.75rem; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 0.9rem;
+  padding: 1rem; border-radius: 14px; background: color-mix(in srgb, var(--gold) 10%, var(--bg)); border: 1px solid color-mix(in srgb, var(--gold) 35%, transparent);
+}
+.award-ico { width: 2.5rem; height: 2.5rem; border-radius: 50%; display: grid; place-items: center; background: var(--gold); color: var(--surface); }
+.award-ico svg { width: 1.3rem; height: 1.3rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linejoin: round; }
+.award b { display: block; font: 700 1.02rem/1.3 var(--body); }
+.award-amt { font: 500 0.75rem/1.4 var(--mono); letter-spacing: 0.06em; text-transform: uppercase; color: var(--gold); }
+.award p { margin: 0.35rem 0 0; font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
+
+/* Activities */
+.tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.9rem; list-style: none; margin: 0; padding: 0; }
+.tile {
+  border-radius: 18px; padding: 1.25rem; min-height: 9.5rem; display: grid; align-content: space-between; gap: 1rem;
+  background: var(--surface); border: 1px solid var(--line); transition: transform .2s ease, box-shadow .2s ease;
+}
+.tile:hover { transform: translateY(-4px) rotate(-0.6deg); box-shadow: 0 12px 30px -16px color-mix(in srgb, var(--fg) 45%, transparent); }
+.tile .ico { width: 2.5rem; height: 2.5rem; border-radius: 12px; display: grid; place-items: center; background: color-mix(in srgb, var(--accent) 15%, transparent); color: var(--accent); }
+.tile .ico svg { width: 1.3rem; height: 1.3rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.tile b { display: block; font: 700 1.1rem/1.2 var(--body); }
+.tile span { font-size: 0.88rem; color: var(--muted); }
+.tile.feature { grid-column: span 2; background: var(--accent); color: var(--surface); border-color: var(--accent); }
+.tile.feature .ico { background: rgba(255, 255, 255, 0.18); color: inherit; }
+.tile.feature span { color: inherit; opacity: 0.85; }
+.tile.feature .money { font: 900 3.4rem/0.9 var(--display); }
+
+/* Contact */
+.contact { background: var(--slide); color: var(--slide-fg); }
+.contact .wrap { padding-block: 4.5rem; display: grid; grid-template-columns: minmax(0, 1.4fr) auto; gap: 2rem; align-items: end; }
+.contact h2 { font: 900 clamp(2.8rem, 8vw, 5.5rem)/0.88 var(--display); text-transform: uppercase; }
+.contact h2 span { color: var(--mint); }
+.contact p { color: var(--slide-muted); margin: 1rem 0 0; max-width: 32rem; }
+footer { background: var(--slide); color: var(--slide-muted); border-top: 1px solid rgba(181, 163, 204, 0.18); }
+footer .wrap { padding-block: 1.25rem 2rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem; font: 400 0.75rem/1.4 var(--mono); }
+
+/* Motion: content starts visible; reveal only nudges position. */
+@media (prefers-reduced-motion: no-preference) {
+  .hero h1 > span { display: block; animation: slideup .8s cubic-bezier(.2,.8,.2,1) both; }
+  .hero h1 .last { animation-delay: .12s; }
+  @keyframes slideup { from { transform: translateY(0.25em); opacity: .3; } to { transform: none; opacity: 1; } }
+  .rot { display: inline-block; transition: opacity .25s ease, transform .25s ease; }
+  .rot.out { opacity: 0; transform: translateY(6px); }
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .tiles, .r-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .seeking { grid-template-columns: minmax(0, 1fr); }
+  .about-grid { grid-template-columns: minmax(0, 1fr); gap: 2rem; }
+}
+@media (max-width: 700px) {
+  .strip .wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 1.25rem; }
+  .edu-grid { grid-template-columns: minmax(0, 1fr); }
+  .timeline::before { left: 0.5rem; }
+  .t-item { grid-template-columns: 1rem minmax(0, 1fr); column-gap: 1rem; }
+  .t-when { grid-column: 2; grid-row: 1; text-align: left; padding-top: 0; }
+  .t-dot { grid-column: 1; grid-row: 1 / span 2; margin-top: 0.2rem; }
+  .t-card { grid-column: 2; margin-top: 0.4rem; }
+  .contact .wrap { grid-template-columns: minmax(0, 1fr); }
+  .nav ul { gap: 0.8rem; }
+  .nav ul li.hide-sm { display: none; }
+  section.band > .wrap { padding-block: 3.75rem; }
+}
+@media (max-width: 440px) {
+  .tiles, .r-grid { grid-template-columns: minmax(0, 1fr); }
+  .tile.feature { grid-column: auto; }
+}
+</style>
+
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="mark" href="#top">TE<span>.</span></a>
+    <ul>
+      <li><a href="#about">About</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li class="hide-sm"><a href="#education">Education</a></li>
+      <li class="hide-sm"><a href="#activities">Activities</a></li>
+      <li><a class="nav-li" href="https://www.linkedin.com/in/taha-ehsan-a89132253/" target="_blank" rel="noopener" aria-label="Taha Ehsan on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.79 2.66 4.79 6.12v5.33h-4v-4.73c0-1.13-.02-2.58-1.57-2.58-1.58 0-1.82 1.23-1.82 2.5v4.81h-4z"/></svg>LinkedIn</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <canvas id="cells" aria-hidden="true"></canvas>
+  <div class="wrap">
+    <div class="specimen"><span>Slide <b>TE-2026</b></span><span>Stain <b>H&amp;E</b></span><span>McMaster · Life Sci · Level I</span></div>
+    <h1><span>Taha</span><span class="last">Ehsan</span></h1>
+    <p class="roles-line">Aspiring <span class="rot" id="rot">tumour biology researcher</span></p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="#research">My research interests ↓</a>
+      <a class="btn btn-ghost" href="https://www.linkedin.com/in/taha-ehsan-a89132253/" target="_blank" rel="noopener">LinkedIn ↗</a>
+    </div>
+  </div>
+  <div class="scale" aria-hidden="true"><i></i>50 µm</div>
+</header>
+
+<div class="strip">
+  <div class="wrap">
+    <div><b>3+</b><span>years with Ontario DECA</span></div>
+    <div><b>2×</b><span>DECA provincials qualifier</span></div>
+    <div><b>$2.5k</b><span>raised for Relay for Life</span></div>
+    <div><b>2030</b><span>B.Sc. Life Sciences, McMaster</span></div>
+  </div>
+</div>
+
+<main>
+  <section class="band" id="about">
+    <div class="wrap">
+      <div class="sec-head"><span class="label">01 · About</span><h2>Why do cells <em>stop listening?</em></h2></div>
+      <div class="about-grid">
+        <div>
+          <p class="big">I'm a first-year Life Sciences student at McMaster who wants to understand <mark>how tumours start, grow and spread</mark>, and to help the labs working out how to stop them.</p>
+          <p class="why">My dad has a chordoma, a rare tumour that grows along the spine and skull base. Watching him go through it showed me how much we still don't know about rare cancers, and how much new research matters to the families waiting on it. He's the reason I want to work in tumour research.</p>
+          <p>That same drive led me to Relay for Life, where I helped raise $2,500 for cancer research and support, and it's why cell growth and division were always the topics I wanted to dig into when tutoring biology.</p>
+          <p>I bring the habits that make a reliable lab volunteer: careful work under pressure from years in a busy restaurant, following strict procedures as an Elections Canada officer, and explaining complex ideas clearly as a DECA trainer and tutor.</p>
+        </div>
+        <div class="skills-card">
+          <h3>Skills</h3>
+          <ul class="chips">
+            <li>Biology &amp; chemistry</li><li>Following protocols</li><li>Attention to detail</li><li>Science communication</li>
+            <li>Public speaking</li><li>Teamwork</li><li>Tutoring</li><li>Leadership</li><li>Customer service</li>
+          </ul>
+          <span class="label">Open to tumour &amp; cancer research roles</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band research" id="research">
+    <div class="wrap">
+      <div class="sec-head"><span class="label">02 · Research interests</span><h2>Inside the <em>tumour.</em></h2></div>
+      <p class="research-intro">The areas of cancer biology I want to learn about and contribute to as an undergraduate researcher, with a special interest in rare tumours like chordoma.</p>
+      <ul class="r-grid">
+        <li class="r-card"><span class="stain">Growth</span><h3>Tumour biology</h3><p>How mutations let cancer cells ignore the signals that normally control growth and division.</p></li>
+        <li class="r-card"><span class="stain">Environment</span><h3>Tumour microenvironment</h3><p>How blood vessels, immune cells and surrounding tissue help a tumour survive, or fight it.</p></li>
+        <li class="r-card"><span class="stain">Tissue</span><h3>Histopathology</h3><p>Reading stained tissue, like the H&amp;E slide behind my name, to diagnose and grade tumours.</p></li>
+        <li class="r-card"><span class="stain">Treatment</span><h3>Translational oncology</h3><p>Turning lab findings into better therapies and outcomes for patients.</p></li>
+      </ul>
+      <div class="seeking">
+        <div>
+          <h3>What I'm looking for</h3>
+          <p>Undergraduate opportunities in a tumour biology, cancer or oncology lab, at McMaster or in the Hamilton and Guelph area. I'm happy to start with any task that helps the lab.</p>
+        </div>
+        <ul>
+          <li>Research volunteer or research assistant roles</li>
+          <li>Summer student research positions</li>
+          <li>Bench work: sample prep, cell culture support, lab upkeep</li>
+          <li>Literature reviews, data entry and analysis</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="band exp" id="experience">
+    <div class="wrap">
+      <div class="sec-head"><span class="label">03 · Experience</span><h2>Where I've <em>worked.</em></h2></div>
+      <ol class="timeline">
+        <li class="t-item live">
+          <div class="t-when">Sep 2023 –<br>Present</div>
+          <span class="t-dot" aria-hidden="true"></span>
+          <article class="t-card">
+            <div class="t-top"><h3>Ontario DECA</h3><span class="badge">Current</span></div>
+            <p class="org">3 yrs 2 mos · Hybrid</p>
+            <ul class="sub">
+              <li><h4>Chapter Executive / Trainer</h4><p class="org">Part-time · Jun 2025 – present</p><p>Trains chapter members in marketing events for competition.</p></li>
+              <li><h4>General Member</h4><p class="org">Sep 2023 – present</p><p>Competed in the Automotive Services Marketing Series. <span class="highlight">Qualified for provincials in grade 10 and grade 11.</span></p></li>
+            </ul>
+            <ul class="chips"><li>Sales presentations</li><li>Public speaking</li></ul>
+          </article>
+        </li>
+        <li class="t-item">
+          <div class="t-when">Sep 2025 –<br>Jun 2026</div>
+          <span class="t-dot" aria-hidden="true"></span>
+          <article class="t-card">
+            <div class="t-top"><h3>Student Senator</h3><span class="label">10 mos</span></div>
+            <p class="org">Upper Grand District School Board · Hybrid</p>
+            <p class="desc">Represented the student body by raising ongoing issues, gathering feedback, and making sure student voices were heard in school-wide decisions. Worked with fellow senators, administrators, and the board on policy and on communication between students and leadership.</p>
+          </article>
+        </li>
+        <li class="t-item">
+          <div class="t-when">Apr 2025</div>
+          <span class="t-dot" aria-hidden="true"></span>
+          <article class="t-card">
+            <div class="t-top"><h3>Information Officer</h3><span class="label">Federal election</span></div>
+            <p class="org">Elections Canada · Contract · Guelph, ON</p>
+            <p class="desc">Helped run a smooth, accessible polling station. Directed voters, assisted people with disabilities, kept the line moving all day, and took part in the ballot count at close of polls.</p>
+            <ul class="chips"><li>Teamwork</li><li>Accessibility</li></ul>
+          </article>
+        </li>
+        <li class="t-item">
+          <div class="t-when">Apr 2024 –<br>Aug 2026</div>
+          <span class="t-dot" aria-hidden="true"></span>
+          <article class="t-card">
+            <div class="t-top"><h3>Crew Member</h3><span class="label">2 yrs 5 mos</span></div>
+            <p class="org">Tim Hortons · Part-time · Guelph, ON</p>
+            <p class="desc">Delivered fast, friendly service in a busy restaurant: took orders, prepared food and drinks to brand standards, and kept the store clean and welcoming.</p>
+            <ul class="chips"><li>Customer service</li><li>Cash handling</li></ul>
+          </article>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band" id="education">
+    <div class="wrap">
+      <div class="sec-head"><span class="label">04 · Education</span><h2>Where I <em>study.</em></h2></div>
+      <div class="edu-grid">
+        <article class="edu mac">
+          <span class="label">Now · 2026 – 2030</span>
+          <h3>McMaster University</h3>
+          <p class="org">Bachelor of Science, Life Sciences · Level I</p>
+          <span class="big-year" aria-hidden="true">2030</span>
+        </article>
+        <article class="edu">
+          <span class="label">2022 – 2026</span>
+          <h3>Centennial CVI</h3>
+          <p class="org">High School Diploma · Guelph, ON</p>
+          <div class="award">
+            <span class="award-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M8.5 14l-2 7 5.5-3 5.5 3-2-7"/></svg></span>
+            <div>
+              <b>Success Through Hard Work Award</b>
+              <span class="award-amt">$250 · Graduation 2026</span>
+              <p>Given to graduating students who represent the school's motto, achieve high academic success, and show good character.</p>
+            </div>
+          </div>
+          <span class="big-year" aria-hidden="true">2026</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="activities" style="padding-top:0">
+    <div class="wrap" style="padding-top:0">
+      <div class="sec-head"><span class="label">05 · Activities</span><h2>Beyond the <em>classroom.</em></h2></div>
+      <ul class="tiles">
+        <li class="tile feature">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M12 21s-8-5.2-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 5.8-8 11-8 11z"/></svg></span>
+          <div><span class="money">$2,500</span><b>Relay for Life</b><span>Raised for cancer research and support with the Canadian Cancer Society</span></div>
+        </li>
+        <li class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="9" ry="5.5" transform="rotate(-35 12 12)"/><path d="M9 15l6-6M10.5 10.5l3 3M8.5 12.5l3 3M12.5 8.5l3 3"/></svg></span>
+          <div><b>Varsity Football</b><span>Team athlete</span></div>
+        </li>
+        <li class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-8"/><path d="M15 7h6v6"/></svg></span>
+          <div><b>DECA</b><span>Provincials qualifier, now a trainer</span></div>
+        </li>
+        <li class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M9 3h6M10 3v6l-5 9a2 2 0 0 0 1.7 3h10.6a2 2 0 0 0 1.7-3l-5-9V3"/><path d="M7.5 15h9"/></svg></span>
+          <div><b>Science Tutor</b><span>Helping peers through biology and chemistry</span></div>
+        </li>
+        <li class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M5 5h14v14H5z"/><path d="M8 9h3M9.5 7.5v3M13 9h3M8 15h3M13 14l3 3M16 14l-3 3"/></svg></span>
+          <div><b>Math Tutor</b><span>One-on-one peer support</span></div>
+        </li>
+        <li class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span>
+          <div><b>Model UN</b><span>Delegate and debater</span></div>
+        </li>
+        <li class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24"><circle cx="8" cy="8" r="3"/><circle cx="16" cy="8" r="3"/><path d="M3 20c0-3 2.5-5 5-5s5 2 5 5M11 20c0-3 2.5-5 5-5s5 2 5 5"/></svg></span>
+          <div><b>Link Crew</b><span>Mentoring incoming grade 9s</span></div>
+        </li>
+        <li class="tile">
+          <span class="ico"><svg viewBox="0 0 24 24"><path d="M4 21V10l8-6 8 6v11"/><path d="M9 21v-6h6v6"/></svg></span>
+          <div><b>Student Senate</b><span>Voice of the student body</span></div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <h2>Let's <span>connect.</span></h2>
+      <p>Running a tumour or cancer biology lab and need an eager undergraduate? I'd love to hear from you. The fastest way to reach me is a message on LinkedIn.</p>
+    </div>
+    <a class="li-card" href="https://www.linkedin.com/in/taha-ehsan-a89132253/" target="_blank" rel="noopener">
+      <span class="li-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4v11H3zM9.5 9.75h3.8v1.6h.05c.53-1 1.84-2.05 3.78-2.05 4.04 0 4.79 2.66 4.79 6.12v5.33h-4v-4.73c0-1.13-.02-2.58-1.57-2.58-1.58 0-1.82 1.23-1.82 2.5v4.81h-4z"/></svg></span>
+      <div><b>Taha Ehsan</b><span>linkedin.com/in/taha-ehsan-a89132253</span><br><em>Connect or message me ↗</em></div>
+    </a>
+  </div>
+</section>
+<footer><div class="wrap"><span>© 2026 Taha Ehsan</span><span>Guelph · Hamilton, Ontario</span></div></footer>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Rotating role line
+  const roles = ['tumour biology researcher', 'cancer research assistant', 'oncology lab volunteer', 'Life Sciences student at McMaster'];
+  const rot = document.getElementById('rot');
+  if (!reduce) {
+    let i = 0;
+    setInterval(() => {
+      rot.classList.add('out');
+      setTimeout(() => { i = (i + 1) % roles.length; rot.textContent = roles[i]; rot.classList.remove('out'); }, 260);
+    }, 2400);
+  }
+
+  // Microscope-slide cell field
+  const cv = document.getElementById('cells');
+  const ctx = cv.getContext('2d');
+  let w = 0, h = 0, dpr = 1, cells = [];
+  const hues = ['255,143,191', '230,110,160', '196,170,230'];
+  function make(n) {
+    cells = Array.from({ length: n }, () => {
+      const r = 18 + Math.random() * 46;
+      return {
+        x: Math.random() * w, y: Math.random() * h, r,
+        vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25,
+        c: hues[Math.random() < .7 ? 0 : (Math.random() < .5 ? 1 : 2)],
+        nx: (Math.random() - .5) * r * .4, ny: (Math.random() - .5) * r * .4,
+        ph: Math.random() * Math.PI * 2, wob: 3 + Math.random() * 4
+      };
+    });
+  }
+  function resize() {
+    const rect = cv.getBoundingClientRect();
+    dpr = Math.min(devicePixelRatio || 1, 2);
+    w = rect.width; h = rect.height;
+    cv.width = w * dpr; cv.height = h * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    make(Math.round(Math.min(34, Math.max(12, w * h / 26000))));
+  }
+  function blob(c, t) {
+    ctx.beginPath();
+    const steps = 28;
+    for (let k = 0; k <= steps; k++) {
+      const a = k / steps * Math.PI * 2;
+      const rr = c.r + Math.sin(a * 3 + t * .8 + c.ph) * c.wob * .6 + Math.sin(a * 5 - t * .5 + c.ph) * c.wob * .4;
+      const px = c.x + Math.cos(a) * rr, py = c.y + Math.sin(a) * rr;
+      k ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+    }
+    ctx.closePath();
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, w, h);
+    for (const c of cells) {
+      if (!reduce) {
+        c.x += c.vx; c.y += c.vy;
+        if (c.x < -c.r) c.x = w + c.r; if (c.x > w + c.r) c.x = -c.r;
+        if (c.y < -c.r) c.y = h + c.r; if (c.y > h + c.r) c.y = -c.r;
+      }
+      blob(c, t);
+      ctx.fillStyle = `rgba(${c.c},0.07)`; ctx.fill();
+      ctx.lineWidth = 1.4; ctx.strokeStyle = `rgba(${c.c},0.38)`; ctx.stroke();
+      // Hematoxylin-stained nucleus (violet) inside eosin cytoplasm (pink)
+      ctx.beginPath(); ctx.arc(c.x + c.nx, c.y + c.ny, c.r * .3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(150,105,245,0.32)'; ctx.fill();
+      ctx.beginPath(); ctx.arc(c.x + c.nx + c.r * .08, c.y + c.ny - c.r * .06, c.r * .08, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(190,160,255,0.7)'; ctx.fill();
+    }
+  }
+  let t = 0;
+  function loop() { t += 0.016; draw(t); requestAnimationFrame(loop); }
+  resize();
+  addEventListener('resize', resize);
+  reduce ? draw(0) : requestAnimationFrame(loop);
+})();
+</script>
+
+</body></html>
